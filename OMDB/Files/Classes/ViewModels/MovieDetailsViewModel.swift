@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SearchViewModel: NSObject {
+class MovieDetailsViewModel: NSObject {
     
     //**************************************************
     //MARK: - Constants
@@ -25,12 +25,10 @@ class SearchViewModel: NSObject {
     //MARK: - Methods
     //**************************************************
     
-    func isValidKeyword(_ keyword: String?) -> Bool {
-        guard let keyword = keyword else {
-            return false
+    func getDetails(movieID: String, completion: @escaping (MovieDetails?, URLResponse?, Error?) -> Void) {
+        WebApiManager.sharedInstance.getMovieDetails(movieID: movieID) { (data, response, error) in
+            completion(data, response, error)
         }
-        
-        return !(keyword.replacingOccurrences(of: " ", with: "") == "")
     }
     
 }

@@ -2,14 +2,14 @@
 //  SearchResultCell.swift
 //  OMDBAPI
 //
-//  Created by Piyush on 2/4/20.
+//  Created by Piyush on 6/3/20.
 //  Copyright © 2020 Piyush Kandrikar. All rights reserved.
 //
 
 import UIKit
 import Foundation
 
-class SearchResultCell: UITableViewCell {
+class SearchResultCell: UICollectionViewCell {
     
     //**************************************************
     //MARK: - Properties
@@ -33,18 +33,11 @@ class SearchResultCell: UITableViewCell {
         // Initialization code
     }
     
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        
-        // Configure the view for the selected state
-    }
-    
     func initWithData(_ name: String, year: String, thumbnail: String) {
         label_name.text = name.capitalized
         label_year.text = year
-        self.poster_movie.image = nil
-        addLoadingView()
-        
+        self.poster_movie.image = UIImage(named: "ic_image_placeholder.png")
+        self.poster_movie.contentMode = .center
         Utility.getImageFromURlString(thumbnail) { (img) in
             if let img = img {
                 DispatchQueue.main.async {
@@ -54,23 +47,9 @@ class SearchResultCell: UITableViewCell {
         }
     }
     
-    func addLoadingView() {
-        loadingView = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: poster_movie.frame.size.width, height: poster_movie.frame.size.height))
-        if let loadingView = loadingView {
-            loadingView.startAnimating()
-            poster_movie.addSubview(loadingView)
-        }
-    }
-    func removeLoadingView() {
-        if let loadingView = self.loadingView {
-            loadingView.stopAnimating()
-            loadingView.removeFromSuperview()
-        }
-    }
-    
     func showImage(_ img: UIImage) {
         self.poster_movie.image = img
-        self.removeLoadingView()
+        self.poster_movie.contentMode = .scaleToFill
     }
     
 }
