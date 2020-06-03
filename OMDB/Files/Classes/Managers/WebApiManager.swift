@@ -30,8 +30,6 @@ class WebApiManager: NSObject {
         }
         let request = URLRequest(url: url)
         
-        print(url)
-        
         let task = URLSession.shared.dataTask(with: request) { (data, urlResponse, error) in
             if let data = data {
                 do {
@@ -54,4 +52,32 @@ class WebApiManager: NSObject {
         task.resume()
     }
     
+    func getMovieDetails(movieID: String, completionHandler: @escaping (MovieDetails?, URLResponse?, Error?) -> Void) {
+        
+        let url_str = ApiConstants.OmdbAPI.movie_details + movieID
+        guard let url = URL(string: url_str) else {
+            return
+        }
+        let request = URLRequest(url: url)
+        
+        print(url)
+        
+        let task = URLSession.shared.dataTask(with: request) { (data, urlResponse, error) in
+            if let data = data {
+                do {
+                    let responseModel = try JSONDecoder().decode(MovieDetails.self, from: data)
+                    completionHandler(responseModel, nil, nil)
+                } catch  {
+                    completionHandler(nil, nil, self.getMovieDetailsError())
+                }
+            }else {
+                completionHandler(nil, nil, self.getMovieDetailsError())
+            }
+        }
+        task.resume()
+    }
+    
+    func getMovieDetailsError() -> NSError{
+        return NSError(domain: "", code: 400, userInfo: ["description" : "No data found"])
+    }
 }

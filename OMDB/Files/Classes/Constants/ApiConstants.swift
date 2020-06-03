@@ -18,6 +18,7 @@ struct ApiConstants {
     
     struct OmdbAPI {
         static let search_keyword = BASE_URL + "/?apikey=" + API_KEY + "&s="
+        static let movie_details = BASE_URL + "/?apikey=" + API_KEY + "&i="
     }
 
 }
