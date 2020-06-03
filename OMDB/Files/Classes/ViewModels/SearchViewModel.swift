@@ -2,7 +2,7 @@
 //  SearchViewModel.swift
 //  OMDBAPI
 //
-//  Created by Piyush on 2/4/20.
+//  Created by Piyush on 6/3/20.
 //  Copyright © 2020 Piyush Kandrikar. All rights reserved.
 //
 

@@ -115,7 +115,7 @@
             </objects>
             <point key="canvasLocation" x="1063.768115942029" y="126.5625"/>
         </scene>
-        <!--Search Results-->
+        <!--Movie List-->
         <scene sceneID="ip7-xV-z1g">
             <objects>
                 <viewController storyboardIdentifier="SearchResultViewController" id="fbW-JD-cpR" customClass="SearchResultViewController" customModule="OMDB" customModuleProvider="target" sceneMemberID="viewController">
@@ -123,28 +123,35 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="2bI-3E-Gjh">
-                                <rect key="frame" x="0.0" y="44" width="414" height="852"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="PwF-2p-Dz0">
+                                <rect key="frame" x="0.0" y="54" width="414" height="842"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </tableView>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="20" minimumInteritemSpacing="5" id="BvV-dn-vwA">
+                                    <size key="itemSize" width="250" height="350"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="2bI-3E-Gjh" firstAttribute="top" secondItem="2Xd-Tc-DIM" secondAttribute="top" id="IRe-QC-GIG"/>
-                            <constraint firstItem="2bI-3E-Gjh" firstAttribute="leading" secondItem="2Xd-Tc-DIM" secondAttribute="leading" id="WBP-pq-1lP"/>
-                            <constraint firstAttribute="bottom" secondItem="2bI-3E-Gjh" secondAttribute="bottom" id="jXb-zk-PLx"/>
-                            <constraint firstItem="2bI-3E-Gjh" firstAttribute="trailing" secondItem="2Xd-Tc-DIM" secondAttribute="trailing" id="xiw-Ht-uuj"/>
+                            <constraint firstAttribute="bottom" secondItem="PwF-2p-Dz0" secondAttribute="bottom" id="4pM-94-l4f"/>
+                            <constraint firstItem="PwF-2p-Dz0" firstAttribute="leading" secondItem="2Xd-Tc-DIM" secondAttribute="leading" id="B8e-bL-FUA"/>
+                            <constraint firstItem="PwF-2p-Dz0" firstAttribute="trailing" secondItem="2Xd-Tc-DIM" secondAttribute="trailing" id="aVG-Nk-9MV"/>
+                            <constraint firstItem="PwF-2p-Dz0" firstAttribute="top" secondItem="2Xd-Tc-DIM" secondAttribute="top" constant="10" id="d17-80-DRW"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="2Xd-Tc-DIM"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Search Results" id="5Rm-Ld-o5h"/>
+                    <navigationItem key="navigationItem" title="Movie List" id="5Rm-Ld-o5h"/>
                     <connections>
-                        <outlet property="table" destination="2bI-3E-Gjh" id="rUO-LD-IOA"/>
+                        <outlet property="collectionView" destination="PwF-2p-Dz0" id="gdw-ie-sSE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CvB-pU-xby" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2419" y="127"/>
+            <point key="canvasLocation" x="2418.840579710145" y="126.5625"/>
         </scene>
         <!--Search Details-->
         <scene sceneID="sGn-QG-KSc">
@@ -167,8 +174,9 @@
                                                         <rect key="frame" x="197" y="140" width="20" height="20"/>
                                                         <color key="color" red="0.75406885150000003" green="0.75408679249999999" blue="0.75407713649999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </activityIndicatorView>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZRN-Q1-qZf">
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_image_placeholder.png" translatesAutoresizingMaskIntoConstraints="NO" id="ZRN-Q1-qZf">
                                                         <rect key="frame" x="0.0" y="0.0" width="414" height="300"/>
+                                                        <color key="backgroundColor" red="0.12984204290000001" green="0.12984612579999999" blue="0.12984395030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </imageView>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Wf-i6-uJv">
                                                         <rect key="frame" x="0.0" y="225" width="414" height="75"/>
@@ -377,31 +385,31 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Writer:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Oo-2I-8hm">
-                                                        <rect key="frame" x="27" y="73.5" width="43" height="17"/>
+                                                        <rect key="frame" x="27" y="73.5" width="56" height="17"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" constant="43" id="Maq-W6-2fV"/>
+                                                            <constraint firstAttribute="width" constant="56" id="Maq-W6-2fV"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="14"/>
                                                         <color key="textColor" red="0.83741801979999997" green="0.83743780850000005" blue="0.83742713930000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name of writer" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pPy-bh-DgH">
-                                                        <rect key="frame" x="77" y="73.5" width="319" height="16.5"/>
+                                                        <rect key="frame" x="90" y="73.5" width="306" height="16.5"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                                         <color key="textColor" red="0.57045853140000002" green="0.57047235969999999" blue="0.57046490910000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Actors:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p14-6j-F71">
-                                                        <rect key="frame" x="27" y="100" width="47" height="17"/>
+                                                        <rect key="frame" x="27" y="100" width="56" height="17"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" constant="47" id="LdI-X0-Lpt"/>
+                                                            <constraint firstAttribute="width" constant="56" id="LdI-X0-Lpt"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="14"/>
                                                         <color key="textColor" red="0.83741801979999997" green="0.83743780850000005" blue="0.83742713930000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Actor 1, 2, 3" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kpf-tv-SNj">
-                                                        <rect key="frame" x="82" y="100" width="314" height="16.5"/>
+                                                        <rect key="frame" x="91" y="100" width="305" height="16.5"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                                         <color key="textColor" red="0.57045853140000002" green="0.57047235969999999" blue="0.57046490910000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -515,4 +523,7 @@
             <point key="canvasLocation" x="3092.753623188406" y="126.5625"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="ic_image_placeholder.png" width="30" height="30"/>
+    </resources>
 </document>

@@ -2,14 +2,15 @@
 //  SearchResultViewController.swift
 //  OMDBAPI
 //
-//  Created by Piyush on 2/4/20.
+//  Created by Piyush on 6/3/20.
 //  Copyright © 2020 Piyush Kandrikar. All rights reserved.
 //
 
 import UIKit
 import Foundation
 
-class SearchResultViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class SearchResultViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
     
     //**************************************************
     //MARK: - Properties
@@ -20,7 +21,7 @@ class SearchResultViewController: UIViewController, UITableViewDataSource, UITab
     
     var loadingView:UIActivityIndicatorView?
     
-    @IBOutlet weak var table: UITableView!
+    @IBOutlet weak var collectionView: UICollectionView!
     
     //**************************************************
     //MARK: - Constants
@@ -42,7 +43,7 @@ class SearchResultViewController: UIViewController, UITableViewDataSource, UITab
         if let keyword = searchKeyword {
             SearchManager.sharedInstance.setSearchKeyword(keyword)
             viewModel.setPageNumber()
-            table.reloadData()
+            collectionView.reloadData()
         }
         
 //        if viewModel.pageNumber == 1 {
@@ -89,16 +90,13 @@ class SearchResultViewController: UIViewController, UITableViewDataSource, UITab
     
     func initTable() {
         let nib = UINib(nibName: Constants.searchResultCellIdentifier, bundle: nil)
-        table.register(nib, forCellReuseIdentifier: Constants.searchResultCellIdentifier)
-        
-        table.dataSource = self
-        table.delegate = self
-        
-        table.tableFooterView = UIView()
+        collectionView.register(nib, forCellWithReuseIdentifier: Constants.searchResultCellIdentifier)
+        collectionView.dataSource = self
+        collectionView.delegate = self
     }
     
     func plotsearchResultTable() {
-        table.reloadData()
+        collectionView.reloadData()
     }
     
     func openDetailsScreen(name: String, poster: String, movieID: String) {
@@ -113,12 +111,12 @@ class SearchResultViewController: UIViewController, UITableViewDataSource, UITab
 }
 
 extension SearchResultViewController {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return viewModel.getSearchResultsCount()
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: Constants.searchResultCellIdentifier) as? SearchResultCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.searchResultCellIdentifier, for: indexPath) as? SearchResultCell {
             let cellData = viewModel.getSearchResults()[indexPath.row]
             if let title = cellData.title, let year = cellData.year, let moviePoster = cellData.poster {
                 cell.initWithData(title, year: year, thumbnail: moviePoster)
@@ -126,25 +124,20 @@ extension SearchResultViewController {
             return cell
         }
         
-        return UITableViewCell()
+        return UICollectionViewCell()
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cellData = viewModel.getSearchResults()[indexPath.row]
         if let name = cellData.title, let poster = cellData.poster, let movieID = cellData.imdbID {
             openDetailsScreen(name: name, poster: poster, movieID: movieID)
         }
     }
     
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if indexPath.row == viewModel.getSearchResultsCount() - 8 && !apiCalled {
-//            getNewDataOnScroll()
-        }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let cellWidth = (collectionView.bounds.width - 10)/2;
+        let cellHeight = cellWidth * 2.2
+        return CGSize(width: cellWidth, height: cellHeight)
     }
     
     func getNewDataOnScroll() {
@@ -154,7 +147,7 @@ extension SearchResultViewController {
             if let searchListData = data, error == nil {
                 DispatchQueue.main.async {
                     self?.viewModel.appendSearchResults(searchListData)
-                    self?.table.reloadData()
+                    self?.collectionView.reloadData()
                 }
                 self?.apiCalled = false
             }else {

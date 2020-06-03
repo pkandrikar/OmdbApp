@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4B700AEA24872ABF00D7CAA0 /* MovieDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B700AE924872ABF00D7CAA0 /* MovieDetailsViewModel.swift */; };
+		4B700AEE24875C3D00D7CAA0 /* ic_image_placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B700AED24875C3D00D7CAA0 /* ic_image_placeholder.png */; };
 		4BF392DB24868C7D0020C4CB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF392DA24868C7D0020C4CB /* AppDelegate.swift */; };
 		4BF392DD24868C7D0020C4CB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF392DC24868C7D0020C4CB /* SceneDelegate.swift */; };
 		4BF392DF24868C7D0020C4CB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF392DE24868C7D0020C4CB /* ViewController.swift */; };
@@ -33,6 +34,7 @@
 
 /* Begin PBXFileReference section */
 		4B700AE924872ABF00D7CAA0 /* MovieDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsViewModel.swift; sourceTree = "<group>"; };
+		4B700AED24875C3D00D7CAA0 /* ic_image_placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_image_placeholder.png; sourceTree = "<group>"; };
 		4BF392D724868C7D0020C4CB /* OMDB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OMDB.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BF392DA24868C7D0020C4CB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4BF392DC24868C7D0020C4CB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -191,6 +193,7 @@
 		4BF3930824868D450020C4CB /* UIAssets */ = {
 			isa = PBXGroup;
 			children = (
+				4B700AED24875C3D00D7CAA0 /* ic_image_placeholder.png */,
 			);
 			path = UIAssets;
 			sourceTree = "<group>";
@@ -254,6 +257,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4BF392E724868C7F0020C4CB /* LaunchScreen.storyboard in Resources */,
+				4B700AEE24875C3D00D7CAA0 /* ic_image_placeholder.png in Resources */,
 				4BF392E424868C7F0020C4CB /* Assets.xcassets in Resources */,
 				4BF3931A24868D450020C4CB /* SearchResultCell.xib in Resources */,
 				4BF392E224868C7D0020C4CB /* Main.storyboard in Resources */,
