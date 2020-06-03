@@ -39,4 +39,16 @@ class Utility: NSObject {
         view.layer.shadowOffset = CGSize(width: 0, height: 0)
         view.layer.shadowRadius = 5
     }
+    
+    static func addGradientToView(_ view: UIView){
+        let gradient: CAGradientLayer = CAGradientLayer()
+
+        gradient.colors = [UIColor(displayP3Red: 0, green: 0, blue: 0, alpha: 0), UIColor.black.cgColor]
+        gradient.locations = [0.0 , 1.0]
+        gradient.startPoint = CGPoint(x: 0.0, y: 0.0)
+        gradient.endPoint = CGPoint(x: 0, y: 1.0)
+        gradient.frame = CGRect(x: 0.0, y: 0.0, width: view.frame.size.width, height: view.frame.size.height)
+
+        view.layer.insertSublayer(gradient, at: 0)
+    }
 }
