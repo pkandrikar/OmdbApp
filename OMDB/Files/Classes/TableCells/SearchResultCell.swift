@@ -37,7 +37,7 @@ class SearchResultCell: UICollectionViewCell {
         label_name.text = name.capitalized
         label_year.text = year
         self.poster_movie.image = UIImage(named: "ic_image_placeholder.png")
-        
+        self.poster_movie.contentMode = .center
         Utility.getImageFromURlString(thumbnail) { (img) in
             if let img = img {
                 DispatchQueue.main.async {
@@ -49,6 +49,7 @@ class SearchResultCell: UICollectionViewCell {
     
     func showImage(_ img: UIImage) {
         self.poster_movie.image = img
+        self.poster_movie.contentMode = .scaleToFill
     }
     
 }

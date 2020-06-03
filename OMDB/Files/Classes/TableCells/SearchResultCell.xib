@@ -19,7 +19,7 @@
                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="36R-fq-8h7">
                         <rect key="frame" x="0.0" y="0.0" width="176" height="374"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_image_placeholder.png" translatesAutoresizingMaskIntoConstraints="NO" id="Tnz-Gp-Ulb">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Tnz-Gp-Ulb">
                                 <rect key="frame" x="0.0" y="0.0" width="176" height="264"/>
                                 <color key="backgroundColor" red="0.12984204290000001" green="0.12984612579999999" blue="0.12984395030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -106,7 +106,4 @@
             <point key="canvasLocation" x="9.5999999999999996" y="86.35682158920541"/>
         </collectionViewCell>
     </objects>
-    <resources>
-        <image name="ic_image_placeholder.png" width="30" height="30"/>
-    </resources>
 </document>

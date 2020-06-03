@@ -82,6 +82,7 @@ class SearchDetailsViewController: UIViewController {
                     DispatchQueue.main.async {
                         self.movie_poster.image = img
                         self.movie_poster.backgroundColor = UIColor.black
+                        self.movie_poster.contentMode = .scaleAspectFill
                     }
                 }
             })

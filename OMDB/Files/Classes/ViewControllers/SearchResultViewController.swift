@@ -135,8 +135,8 @@ extension SearchResultViewController {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let cellWidth = (collectionView.bounds.width - 10)/2;
-        let cellHeight = cellWidth * 2.2
+        let cellWidth = (collectionView.bounds.width - 20)/2;
+        let cellHeight = cellWidth * 1.55 + 116
         return CGSize(width: cellWidth, height: cellHeight)
     }
     
