@@ -13,7 +13,7 @@ class SearchResultViewModel: NSObject {
     //**************************************************
     //MARK: - Properties
     //**************************************************
-    var pageNumber = SearchResultViewModel.getLastStoredIndex()
+    var pageNumber = 1
     private var searchResult: [SearchItem] = []
     
     //**************************************************
@@ -22,35 +22,16 @@ class SearchResultViewModel: NSObject {
     func getSearchResult(completion: @escaping ([SearchItem]?, URLResponse?, Error?) -> Void) {
         guard let keyword = SearchManager.sharedInstance.getSearchKeyword() else { return }
         
-        UserDefaults.standard.set(pageNumber, forKey: SearchResultViewModel.getLastStoredIndexKey())
-        UserDefaults.standard.synchronize()
-        
         WebApiManager.sharedInstance.getSearchResult(searchKeyword: keyword, pageNumber: pageNumber) { (data, response, error) in
             if let data = data, data.count > 0 {
                 self.pageNumber += 1
-                UserDefaults.standard.set(self.pageNumber, forKey: SearchResultViewModel.getLastStoredIndexKey())
-                UserDefaults.standard.synchronize()
             }
             completion(data, response, error)
         }
     }
     
     func setPageNumber() {
-        pageNumber = SearchResultViewModel.getLastStoredIndex()
-    }
-    
-    static func getLastStoredIndex() -> Int {
-        guard let _ = SearchManager.sharedInstance.getSearchKeyword() else { return 1}
-        
-        if let index = UserDefaults.standard.value(forKey: SearchResultViewModel.getLastStoredIndexKey()) as? Int {
-            return index
-        }
-        
-        return 1
-    }
-    static func getLastStoredIndexKey() -> String {
-        guard let keyword = SearchManager.sharedInstance.getSearchKeyword() else { return ""}
-        return "\(keyword)pageNumber"
+        pageNumber = 1
     }
     
     func getSearchResults() -> [SearchItem] {
