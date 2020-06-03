@@ -51,7 +51,12 @@ class SearchDetailsViewController: UIViewController {
         super.viewDidLoad()
         
         self.title = "Movie details"
+        addLoadingView()
     
+        if let name = name {
+            label_name.text = name.capitalized
+        }
+        
         if let id = movieID {
             viewModel.getDetails(movieID: id) { (data, response, error) in
                 if error == nil {
@@ -65,9 +70,6 @@ class SearchDetailsViewController: UIViewController {
     }
     
     func plotScreen() {
-        
-        addLoadingView()
-        
         guard let movieDetails = self.movieDetails else {
             return
         }
@@ -79,18 +81,11 @@ class SearchDetailsViewController: UIViewController {
                 if let img = img {
                     DispatchQueue.main.async {
                         self.movie_poster.image = img
-                        if let loadingView = self.loadingView {
-                            loadingView.stopAnimating()
-                            loadingView.removeFromSuperview()
-                        }
                     }
                 }
             })
         }
         
-        if let name = movieDetails.title {
-            label_name.text = name.capitalized
-        }
         label_year.text = movieDetails.year ?? "NA"
         label_time.text = movieDetails.runtime ?? "NA"
         label_genre.text = movieDetails.genre ?? "NA"
@@ -103,13 +98,19 @@ class SearchDetailsViewController: UIViewController {
         label_director.text = movieDetails.director ?? "NA"
         label_writer.text = movieDetails.writer ?? "NA"
         label_actors.text = movieDetails.actors ?? "NA"
+        
+        if let loadingView = self.loadingView {
+            loadingView.stopAnimating()
+            loadingView.removeFromSuperview()
+        }
     }
     
     func addLoadingView() {
-        loadingView = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: view_imgHolder.frame.size.width, height: view_imgHolder.frame.size.height))
+        loadingView = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height:  self.view.frame.size.height))
         if let loadingView = loadingView {
+            loadingView.backgroundColor = UIColor.black;
             loadingView.startAnimating()
-            view_imgHolder.addSubview(loadingView)
+            self.view.addSubview(loadingView)
         }
     }
 }
