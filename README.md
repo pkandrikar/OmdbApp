@@ -13,7 +13,7 @@ https://github.com/pkandrikar/OmdbApp.git
 6. Image cache implemeted
 
 # App Screenshot
-![](AppScreenShots/Screen1.png)![](AppScreenShots/Screen2.png)![](AppScreenShots/Screen3.png)
+![](AppScreenShots/Screen0.png)
 
 # How to run this code
 1. Open 'OMDB.xcodeproj' in latest xCode
@@ -21,4 +21,3 @@ https://github.com/pkandrikar/OmdbApp.git
 
 # Third-Party library used
 - No third-party library has been used for this project
-
