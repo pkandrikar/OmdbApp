@@ -24,7 +24,7 @@ class WebApiManager: NSObject {
     
     func getSearchResult(searchKeyword: String, pageNumber: Int, completionHandler: @escaping ([SearchItem]?, URLResponse?, Error?) -> Void) {
         
-        let url_str = ApiConstants.OmdbAPI.search_keyword + searchKeyword + "&type=" + ApiConstants.TYPE
+        let url_str = ApiConstants.OmdbAPI.search_keyword + searchKeyword + "&type=" + ApiConstants.TYPE + "&page=" + "\(pageNumber)"
         guard let url = URL(string: url_str) else {
             return
         }

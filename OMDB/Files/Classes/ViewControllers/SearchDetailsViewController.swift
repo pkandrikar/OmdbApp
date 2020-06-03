@@ -49,14 +49,19 @@ class SearchDetailsViewController: UIViewController {
     //**************************************************
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        initialse()
+    }
+    
+    func initialse(){
         self.title = "Movie details"
         addLoadingView()
-    
         if let name = name {
             label_name.text = name.capitalized
         }
-        
+        getMovieDetails()
+    }
+    
+    func getMovieDetails(){
         if let id = movieID {
             viewModel.getDetails(movieID: id) { (data, response, error) in
                 if error == nil {

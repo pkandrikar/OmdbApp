@@ -46,9 +46,7 @@ class SearchResultViewController: UIViewController, UICollectionViewDelegate, UI
             collectionView.reloadData()
         }
         
-//        if viewModel.pageNumber == 1 {
-            callApiToGetsearchResults()
-//        }
+        callApiToGetsearchResults()
     }
     
     func callApiToGetsearchResults() {
@@ -138,6 +136,12 @@ extension SearchResultViewController {
         let cellWidth = (collectionView.bounds.width - 20)/2;
         let cellHeight = cellWidth * 1.55 + 116
         return CGSize(width: cellWidth, height: cellHeight)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if indexPath.row == viewModel.getSearchResultsCount() - 8 && !apiCalled {
+            getNewDataOnScroll()
+        }
     }
     
     func getNewDataOnScroll() {
